@@ -3,17 +3,17 @@
 import { wait } from "@shared/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui/spinner";
-import { publicEnv } from "@/lib/env";
+import { testRpc } from "@/lib/rpc/test.rpc";
 
 export const TestComponent = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["test"],
     queryFn: async () => {
       await wait(1000);
-      const result = await fetch(publicEnv.NEXT_PUBLIC_API_URL, {
-        credentials: "include",
-      }).then((res) => res.text());
-      return result;
+      const result = await testRpc.index
+        .$get({ query: { title: "test", body: "test" } })
+        .then((res) => res.json());
+      return result.message;
     },
   });
 
