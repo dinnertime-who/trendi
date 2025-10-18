@@ -9,7 +9,7 @@
     },
     "start": {
       "dependsOn": ["^start"],
-      "inputs": [".env*"]
+      "inputs": ["$TURBO_DEFAULT$", ".env*"]
     },
     "lint": {
       "dependsOn": ["^lint"]
