@@ -1,5 +1,5 @@
 [build]
-buildCommand = "cd ../.. && pnpm install && pnpm turbo run build --filter=web"
+buildCommand = "pwd && ls -la && cd ../.. && pwd && ls -la && pnpm install --frozen-lockfile && pnpm turbo build --filter=web"
 
 [deploy]
 startCommand = "cd apps/web && pnpm start"
