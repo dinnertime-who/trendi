@@ -8,7 +8,6 @@ const app = new Hono();
 
 app.use("*", async (c, next) => {
   const { ALLOWED_ORIGINS } = env<{ ALLOWED_ORIGINS: string | undefined }>(c);
-  console.log("ALLOWED_ORIGINS", ALLOWED_ORIGINS);
   const allowedOrigins = ALLOWED_ORIGINS?.split(",") || [];
   const corsMiddlewareHandler = cors({
     origin: allowedOrigins,
@@ -18,10 +17,6 @@ app.use("*", async (c, next) => {
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");
-});
-
-app.get("/test", (c) => {
-  return c.json({ env: process.env });
 });
 
 serve(
