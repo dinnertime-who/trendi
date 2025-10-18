@@ -6,20 +6,20 @@ import { Spinner } from "@/components/ui/spinner";
 import { publicEnv } from "@/lib/env";
 
 export const TestComponent = () => {
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ["test"],
-		queryFn: async () => {
-			await wait(1000);
-			const result = await fetch(publicEnv.NEXT_PUBLIC_API_URL, {
-				credentials: "include",
-			}).then((res) => res.text());
-			return result;
-		},
-	});
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["test"],
+    queryFn: async () => {
+      await wait(1000);
+      const result = await fetch(publicEnv.NEXT_PUBLIC_API_URL, {
+        credentials: "include",
+      }).then((res) => res.text());
+      return result;
+    },
+  });
 
-	if (isLoading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
-	if (isError) return <div>Error</div>;
+  if (isError) return <div>Error</div>;
 
-	return <div>{data}</div>;
+  return <div>{data}</div>;
 };
