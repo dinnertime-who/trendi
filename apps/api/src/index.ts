@@ -1,22 +1,19 @@
-import "dotenv/config";
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { env } from "hono/adapter";
 import { cors } from "hono/cors";
 
-const app = new Hono();
+const app = new Hono<{ Bindings: { ALLOWED_ORIGINS: string | undefined } }>();
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
-
-console.log("allowedOrigins", allowedOrigins);
-
-app.use(
-	"/*",
-	cors({
+app.use("/*", async (c, next) => {
+	console.log(c.env.ALLOWED_ORIGINS);
+	const { ALLOWED_ORIGINS } = env<{ ALLOWED_ORIGINS: string | undefined }>(c);
+	const allowedOrigins = ALLOWED_ORIGINS?.split(",") || [];
+	const corsMiddlewareHandler = cors({
 		origin: allowedOrigins,
-		allowHeaders: ["Authorization", "Content-Type"],
-		allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-	}),
-);
+	});
+	return corsMiddlewareHandler(c, next);
+});
 
 app.get("/", (c) => {
 	return c.text("Hello Hono!");
