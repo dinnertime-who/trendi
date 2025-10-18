@@ -1,12 +1,11 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
-import { env } from "hono/adapter";
 import { cors } from "hono/cors";
 
 const app = new Hono();
 
 app.use("*", async (c, next) => {
-  const { ALLOWED_ORIGINS } = env<{ ALLOWED_ORIGINS: string | undefined }>(c);
+  const { ALLOWED_ORIGINS } = process.env;
   console.log("ALLOWED_ORIGINS", ALLOWED_ORIGINS);
   const allowedOrigins = ALLOWED_ORIGINS?.split(",") || [];
   const corsMiddlewareHandler = cors({
@@ -20,8 +19,7 @@ app.get("/", (c) => {
 });
 
 app.get("/test", (c) => {
-  const env_ = env(c);
-  return c.json({ env: env_ });
+  return c.json({ env: process.env });
 });
 
 serve(
