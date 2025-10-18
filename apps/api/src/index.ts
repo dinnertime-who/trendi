@@ -3,12 +3,9 @@ import { Hono } from "hono";
 import { env } from "hono/adapter";
 import { cors } from "hono/cors";
 
-const app = new Hono<{ Bindings: { ALLOWED_ORIGINS: string | undefined } }>();
+const app = new Hono();
 
-app.use("/*", async (c, next) => {
-  console.log("c.env.ALLOWED_ORIGINS", c.env.ALLOWED_ORIGINS);
-  console.log("env", env(c));
-  console.log("c.env", c.env);
+app.use("*", async (c, next) => {
   const { ALLOWED_ORIGINS } = env<{ ALLOWED_ORIGINS: string | undefined }>(c);
   console.log("ALLOWED_ORIGINS", ALLOWED_ORIGINS);
   const allowedOrigins = ALLOWED_ORIGINS?.split(",") || [];
@@ -20,6 +17,11 @@ app.use("/*", async (c, next) => {
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");
+});
+
+app.get("/test", (c) => {
+  const env_ = env(c);
+  return c.json({ env: env_ });
 });
 
 serve(
