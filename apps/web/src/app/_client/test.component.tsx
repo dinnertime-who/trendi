@@ -11,7 +11,7 @@ export const TestComponent = () => {
     queryFn: async () => {
       await wait(1000);
       const result = await fetch(publicEnv.NEXT_PUBLIC_API_URL, {
-        credentials: "include",
+        credentials: "same-origin",
       }).then((res) => res.text());
       return result;
     },
