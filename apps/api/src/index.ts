@@ -11,6 +11,9 @@ app.use("*", async (c, next) => {
   const allowedOrigins = ALLOWED_ORIGINS?.split(",") || [];
   const corsMiddlewareHandler = cors({
     origin: allowedOrigins,
+    credentials: true, // ✅ 필수
+    allowHeaders: ["Authorization", "Content-Type"],
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   });
   return corsMiddlewareHandler(c, next);
 });
