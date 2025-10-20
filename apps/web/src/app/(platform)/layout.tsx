@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Footer } from "@/components/footer";
 import { Header } from "./_components/header";
 
@@ -8,9 +9,11 @@ export default function PlatformLayout({
 }) {
   return (
     <section>
-      <Header />
-      {children}
-      <Footer />
+      <Suspense>
+        <Header />
+        {children}
+        <Footer />
+      </Suspense>
     </section>
   );
 }
