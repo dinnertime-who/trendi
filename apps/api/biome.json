@@ -21,6 +21,9 @@
       "correctness": {
         "noUnusedImports": "error"
       },
+      "style": {
+        "useImportType": "off"
+      },
       "suspicious": {
         "noUnknownAtRules": "off",
         "noDocumentCookie": "off",
