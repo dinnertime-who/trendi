@@ -30,7 +30,7 @@ const categories = [
 export function CategorySection() {
   return (
     <section className="py-12 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="app-container px-4">
         <h2 className="text-2xl font-bold text-center mb-8">
           어떤 것을 배우고 싶으세요?
         </h2>

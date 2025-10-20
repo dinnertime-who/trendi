@@ -78,6 +78,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* custom */
+  --app-container-width: calc(var(--spacing) * 320);
   --header-height: calc(var(--spacing) * 20);
 }
 
@@ -122,4 +123,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@utility app-container {
+  @apply px-4 w-full max-w-(--app-container-width) mx-auto;
 }

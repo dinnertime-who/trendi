@@ -64,7 +64,7 @@ export function HeroSection() {
             <div
               className={`h-full ${banner.bgColor} flex items-center justify-center`}
             >
-              <div className="container mx-auto px-4 text-center text-white">
+              <div className="app-container px-4 text-center text-white">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">
                   {banner.title}
                 </h1>
