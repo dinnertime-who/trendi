@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { DialogService } from "@/components/dialog-service/dialog-service";
-import { notoSansKR, pretendard } from "@/config/font";
+import { pretendard } from "@/config/font";
 import { ReactQueryProvider } from "@/lib/react-query/provider";
 import { cn } from "@/lib/utils";
 
@@ -19,13 +19,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth" data-scroll-behavior="smooth">
       <body
-        className={cn(
-          notoSansKR.className,
-          pretendard.className,
-          notoSansKR.variable,
-          pretendard.variable,
-          "antialiased",
-        )}
+        className={cn(pretendard.className, pretendard.variable, "antialiased")}
       >
         <ReactQueryProvider>
           <NuqsAdapter>{children}</NuqsAdapter>
