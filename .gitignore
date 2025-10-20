@@ -40,3 +40,4 @@ yarn-error.log*
 docker-compose.yaml
 database/
 redis-data/
+.claude
