@@ -1,0 +1,26 @@
+{
+  "name": "@internal/utils",
+  "private": true,
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "biome check",
+    "format": "biome format --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.6",
+    "@types/node": "^24.9.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  }
+}
