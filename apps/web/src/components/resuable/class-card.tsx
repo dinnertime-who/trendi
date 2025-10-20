@@ -34,7 +34,7 @@ export const ClassCard = ({
   return (
     <div
       className={cn(
-        "relative hover:-translate-y-1 transition-all duration-300 ease-out ",
+        "relative hover:-translate-y-1 transition-all duration-300 ease-out",
         className,
       )}
     >
@@ -46,7 +46,7 @@ export const ClassCard = ({
 
       <Link href={href} className="flex flex-col">
         <Image
-          className="aspect-video object-cover object-center relative overflow-hidden rounded-lg w-full"
+          className="aspect-square sm:aspect-video object-cover object-center relative overflow-hidden rounded-lg w-full"
           src={thumbnailUrl}
           alt={title}
           width={640}

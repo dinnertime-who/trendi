@@ -62,13 +62,10 @@ export function ClassListSection() {
   return (
     <section className="py-12">
       <div className="app-container px-4">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">주간 BEST 인기 클래스 20</h2>
-          <p className="text-muted-foreground">
-            수강생들이 가장 많이 선택한 베스트 클래스를 만나보세요
-          </p>
+        <div className="mb-4">
+          <h2 className="text-xl font-bold mb-2">주간 BEST 인기 클래스 20</h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
           {sampleClasses.map((classItem) => (
             <ClassCard
               key={classItem.id}
