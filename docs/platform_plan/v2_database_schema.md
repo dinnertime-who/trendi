@@ -636,7 +636,7 @@ async function seed() {
 
   // 6. 설정 초기화
   await db.insert(settings).values([
-    { key: 'site_name', value: 'TRENDI', description: '사이트 이름' },
+    { key: 'site_name', value: 'DITREN', description: '사이트 이름' },
     { key: 'site_email', value: 'contact@trendi.com', description: '대표 이메일' },
     { key: 'bank_name', value: '국민은행', description: '입금 계좌 은행명' },
     { key: 'bank_account', value: '123-456-789012', description: '입금 계좌번호' },

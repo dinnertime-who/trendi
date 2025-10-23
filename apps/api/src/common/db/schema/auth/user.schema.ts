@@ -1,4 +1,9 @@
-import { Gender, UserRole } from "@internal/schemas";
+import {
+  AccountProvider,
+  Gender,
+  UserRole,
+  UserStatus,
+} from "@internal/schemas";
 import {
   index,
   pgEnum,
@@ -14,7 +19,14 @@ export const roleEnum = pgEnum("role", [
   UserRole.USER,
   UserRole.TUTOR,
 ]);
+
 export const genderEnum = pgEnum("gender", [Gender.MALE, Gender.FEMALE]);
+
+export const statusEnum = pgEnum("status", [
+  UserStatus.PROCESSING,
+  UserStatus.COMPLETED,
+  UserStatus.CANCELLED,
+]);
 
 export const user = pgTable(
   "user",
@@ -28,7 +40,8 @@ export const user = pgTable(
     birthDate: timestamp("birth_date"),
     gender: genderEnum(),
     email: text("email"),
-    role: roleEnum(),
+    role: roleEnum().default(UserRole.USER),
+    status: statusEnum().default(UserStatus.PROCESSING),
   },
   (table) => [index("user_email_idx").on(table.email)],
 );
@@ -56,13 +69,20 @@ export const session = pgTable(
   ],
 );
 
+export const accountProviderEnum = pgEnum("provider_id", [
+  AccountProvider.EMAIL,
+  AccountProvider.GOOGLE,
+  AccountProvider.NAVER,
+  AccountProvider.KAKAO,
+]);
+
 export const account = pgTable(
   "account",
   {
     id: cuidPrimaryKey(),
     // social login이면 response에 포함된 id, email/password login이면 email
     accountId: text("account_id").notNull(),
-    providerId: text("provider_id").notNull(),
+    providerId: accountProviderEnum().notNull(),
     email: text("email"),
     userId: text("user_id")
       .notNull()

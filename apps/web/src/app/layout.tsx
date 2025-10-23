@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: {
-    default: "TRENDI - 지금 바로 시작하는 특별한 클래스",
-    template: "%s | TRENDI - 지금 바로 시작하는 특별한 클래스",
+    default: "DITREN - 지금 바로 시작하는 특별한 클래스",
+    template: "%s | DITREN - 지금 바로 시작하는 특별한 클래스",
   },
-  description: "TRENDI - 지금 바로 시작하는 특별한 클래스",
+  description: "DITREN - 지금 바로 시작하는 특별한 클래스",
 };
 
 export default function RootLayout({
