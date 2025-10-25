@@ -38,10 +38,10 @@ export const user = pgTable(
     username: text("username").notNull().unique(),
     phoneNumber: text("phone_number"),
     birthDate: timestamp("birth_date"),
-    gender: genderEnum(),
+    gender: genderEnum("gender"),
     email: text("email"),
-    role: roleEnum().default(UserRole.USER),
-    status: statusEnum().default(UserStatus.PROCESSING),
+    role: roleEnum("role").default(UserRole.USER).notNull(),
+    status: statusEnum("status").default(UserStatus.PROCESSING).notNull(),
   },
   (table) => [index("user_email_idx").on(table.email)],
 );
@@ -69,7 +69,7 @@ export const session = pgTable(
   ],
 );
 
-export const accountProviderEnum = pgEnum("provider_id", [
+export const accountProviderEnum = pgEnum("account_provider", [
   AccountProvider.EMAIL,
   AccountProvider.GOOGLE,
   AccountProvider.NAVER,
@@ -82,7 +82,7 @@ export const account = pgTable(
     id: cuidPrimaryKey(),
     // social login이면 response에 포함된 id, email/password login이면 email
     accountId: text("account_id").notNull(),
-    providerId: accountProviderEnum().notNull(),
+    providerId: accountProviderEnum("provider_id").notNull(),
     email: text("email"),
     userId: text("user_id")
       .notNull()

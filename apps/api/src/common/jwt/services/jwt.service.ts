@@ -14,7 +14,10 @@ export class JwtService {
 
   generateJwt(payload: JwtPayload, type: "accessToken" | "refreshToken") {
     const config = this.getConfig(type);
-    return this.signByConfig(config, payload);
+    return {
+      token: this.signByConfig(config, payload),
+      expiresIn: Date.now() + config.expiresIn * 1000,
+    };
   }
 
   generateJwts(payload: JwtPayload) {

@@ -12,16 +12,16 @@ export class RequestUserMiddleware implements NestMiddleware {
   async use(req: RequestWithUser, _: Response, next: NextFunction) {
     const token = this.jwtService.extractTokenFromHeader(req);
     const { data, ok } = await this.validateToken(token);
-    req.user = {
-      data,
-      isValid: ok,
-    };
+    req.user = { data, isValid: ok };
+
     next();
   }
 
   private validateToken(token: string | null) {
     return tryCatch(async () => {
-      if (!token) return null;
+      if (!token) {
+        throw new Error("Unauthorized");
+      }
       return this.jwtService.verifyJwt(token, "accessToken");
     });
   }
