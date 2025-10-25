@@ -11,6 +11,7 @@ async function bootstrap() {
 
   app.use(helmet());
   app.use(compression());
+  app.setGlobalPrefix("api");
 
   const configService = app.get<ConfigService<Configuration>>(ConfigService);
   const allowedOrigins = configService.getOrThrow("allowedOrigins", {

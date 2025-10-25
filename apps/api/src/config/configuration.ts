@@ -1,13 +1,13 @@
 export const configuration = () => {
   const {
-    DATABASE_URL,
-    REDIS_URL,
-    ALLOWED_ORIGINS,
-    PORT,
-    JWT_SECRET,
-    JWT_EXPIRES_IN,
-    REFRESH_TOKEN_SECRET,
-    REFRESH_TOKEN_EXPIRES_IN,
+    DATABASE_URL, // 데이터베이스 연결 URL
+    REDIS_URL, // Redis 연결 URL
+    ALLOWED_ORIGINS, // CORS 허용
+    PORT, // 서버 실행 포트
+    ACCESS_TOKEN_SECRET, // 액세스 토큰 시크릿 키
+    ACCESS_TOKEN_EXPIRES_IN, // 액세스 토큰 만료 시간
+    REFRESH_TOKEN_SECRET, // 리프레시 토큰 시크릿 키
+    REFRESH_TOKEN_EXPIRES_IN, // 리프레시 토큰 만료 시간
   } = process.env;
 
   if (
@@ -15,8 +15,8 @@ export const configuration = () => {
     !REDIS_URL ||
     !ALLOWED_ORIGINS ||
     !PORT ||
-    !JWT_SECRET ||
-    !JWT_EXPIRES_IN ||
+    !ACCESS_TOKEN_SECRET ||
+    !ACCESS_TOKEN_EXPIRES_IN ||
     !REFRESH_TOKEN_SECRET ||
     !REFRESH_TOKEN_EXPIRES_IN
   ) {
@@ -24,8 +24,11 @@ export const configuration = () => {
     console.error("REDIS_URL=", REDIS_URL);
     console.error("ALLOWED_ORIGINS=", ALLOWED_ORIGINS);
     console.error("PORT=", PORT);
-    console.error("JWT_SECRET=", JWT_SECRET ? "[HIDDEN]" : undefined);
-    console.error("JWT_EXPIRES_IN=", JWT_EXPIRES_IN);
+    console.error(
+      "ACCESS_TOKEN_SECRET=",
+      ACCESS_TOKEN_SECRET ? "[HIDDEN]" : undefined,
+    );
+    console.error("ACCESS_TOKEN_EXPIRES_IN=", ACCESS_TOKEN_EXPIRES_IN);
     console.error(
       "REFRESH_TOKEN_SECRET=",
       REFRESH_TOKEN_SECRET ? "[HIDDEN]" : undefined,
@@ -40,9 +43,9 @@ export const configuration = () => {
     redisUrl: REDIS_URL,
     allowedOrigins: ALLOWED_ORIGINS.split(","),
     port: Number(PORT || "") || 8000,
-    jwt: {
-      secret: JWT_SECRET,
-      expiresIn: Number(JWT_EXPIRES_IN) || 900, // 기본 15분 (900초)
+    accessToken: {
+      secret: ACCESS_TOKEN_SECRET,
+      expiresIn: Number(ACCESS_TOKEN_EXPIRES_IN) || 900, // 기본 15분 (900초)
     },
     refreshToken: {
       secret: REFRESH_TOKEN_SECRET,
