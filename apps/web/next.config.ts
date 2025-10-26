@@ -59,10 +59,11 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  // react compiler 활성화
   reactCompiler: true,
 
   experimental: {
-    // react compiler 활성화
+    viewTransition: true,
 
     // 서버 소스 맵 비활성화
     serverSourceMaps: false,

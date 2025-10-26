@@ -44,6 +44,9 @@ export function ExampleInfluencers() {
           ...influencers,
           ...influencers,
           ...influencers,
+          ...influencers,
+          ...influencers,
+          ...influencers,
         ].map((influencer, index) => (
           <SwiperSlide key={index} style={{ width: "max-content" }}>
             <Image
@@ -73,6 +76,9 @@ export function ExampleInfluencers() {
         }}
       >
         {[
+          ...influencers,
+          ...influencers,
+          ...influencers,
           ...influencers,
           ...influencers,
           ...influencers,
