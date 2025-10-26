@@ -59,9 +59,10 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  reactCompiler: true,
+
   experimental: {
     // react compiler 활성화
-    reactCompiler: true,
 
     // 서버 소스 맵 비활성화
     serverSourceMaps: false,

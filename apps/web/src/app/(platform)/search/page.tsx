@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ClassCard } from "@/components/resuable/class-card";
 
 const sampleClasses = [
@@ -74,7 +75,11 @@ export default function SearchPage() {
             ].map((classItem, index) => (
               <ClassCard
                 key={index}
-                href={`/service/${classItem.id.toString()}`}
+                href={
+                  `/service/${classItem.id.toString()}` as React.ComponentProps<
+                    typeof Link
+                  >["href"]
+                }
                 category={"VOD"}
                 title={classItem.title}
                 tutor={classItem.tutor}

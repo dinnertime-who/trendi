@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ClassCard } from "./resuable/class-card";
 
 // 샘플 데이터
@@ -69,7 +70,11 @@ export function ClassListSection() {
           {sampleClasses.map((classItem) => (
             <ClassCard
               key={classItem.id}
-              href={`/service/${classItem.id.toString()}`}
+              href={
+                `/service/${classItem.id.toString()}` as React.ComponentProps<
+                  typeof Link
+                >["href"]
+              }
               category={"VOD"}
               title={classItem.title}
               tutor={classItem.tutor}
