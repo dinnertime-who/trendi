@@ -69,7 +69,7 @@ export function ClassListSection() {
           {sampleClasses.map((classItem) => (
             <ClassCard
               key={classItem.id}
-              href={`/search?id=${classItem.id}`}
+              href={`/service/${classItem.id.toString()}`}
               category={"VOD"}
               title={classItem.title}
               tutor={classItem.tutor}

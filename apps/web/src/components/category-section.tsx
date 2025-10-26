@@ -30,25 +30,22 @@ const categories = [
 export function CategorySection() {
   return (
     <section className="py-12 bg-gray-50">
-      <div className="app-container px-4">
-        <h2 className="text-2xl font-bold text-center mb-8">
-          어떤 것을 배우고 싶으세요?
-        </h2>
-        <div className="grid grid-cols-5 md:grid-cols-10 gap-4">
+      <div className="app-container lg:px-6">
+        <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-x-2 gap-y-5 max-w-4xl mx-auto">
           {categories.map((category) => {
             const Icon = category.icon;
             return (
               <Link
                 key={category.id}
                 href={`/search?category=${category.id}`}
-                className="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow group"
+                className="flex flex-col items-center justify-center bg-white group text-center"
               >
                 <div
-                  className={`${category.color} mb-2 group-hover:scale-110 transition-transform`}
+                  className={`${category.color} group-hover:scale-110 transition-transform`}
                 >
                   <Icon className="h-8 w-8" />
                 </div>
-                <span className="text-xs text-center font-medium text-gray-700">
+                <span className="mt-2 text-xs font-medium break-keep md:text-sm tracking-[-0.025em]">
                   {category.name}
                 </span>
               </Link>
